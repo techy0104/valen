@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Christine ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            color: #d63384;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            display: none;
+            max-width: 400px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #ff4d6d;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .emoji {
+            font-size: 50px;
+            margin: 10px 0;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        #screen1 { display: block; }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="screen1" class="container">
+        <h2>Hello my love, my wifey, my Christine ❤️😊</h2>
+        <div class="emoji">🐻🎂💕</div>
+        <img src="https://drive.google.com/uc?id=159fabj63-bVC-ySgWjg6NAvwlGRncPW8" alt="Us Together">
+        <button onclick="nextScreen(2)">Next</button>
+    </div>
+    
+    <div id="screen2" class="container">
+        <p>You are the most wonderful and amazing part of my life. I am so lucky to have you. Thank you for always being by my side. I love you beyond imagination—you are my everything. Let's stay together forever. ❤️</p>
+        <div class="emoji">💖🎁🎀</div>
+        <img src="https://drive.google.com/uc?id=1la4_NoKJRt7EMlTfLNwQUNYknFtiCfPn" alt="Sweet Memory">
+        <button onclick="nextScreen(3)">Next</button>
+    </div>
+    
+    <div id="screen3" class="container">
+        <p>Will you be my Valentine? 💖</p>
+        <div class="emoji">🌹💌💑</div>
+        <img src="https://drive.google.com/uc?id=1BwDrjbXHN06rKUXJDiiZvY_D06r4d0Gf" alt="Cute Moment">
+        <button onclick="nextScreen(4)">Yes 😊</button>
+        <button onclick="nextScreen(5)">Let me think 😏</button>
+    </div>
+    
+    <div id="screen4" class="container">
+        <p>Yayy! Thank you, my love! You make my world brighter! I will love you till the day I die, and I can't imagine a single day without you. ❤️</p>
+        <p>"You're the smile that starts my day, <br> The love that never fades away. <br> In your arms, I find my home, <br> Forever together, never alone. 💖"</p>
+        <div class="emoji">🎂🥰🎊</div>
+    </div>
+    
+    <div id="screen5" class="container">
+        <p>You are stupid, idiot, and dumb most of the times, but still, I will say YES! 😆❤️</p>
+        <button onclick="nextScreen(4)">Yes 😊</button>
+    </div>
+    
+    <script>
+        function nextScreen(screenNum) {
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById('screen' + screenNum).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
