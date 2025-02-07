@@ -17,7 +17,7 @@
         }
 
         .container {
-            max-width: 600px; /* Increased width */
+            max-width: 600px;
             padding: 30px;
             background: white;
             border-radius: 15px;
@@ -25,6 +25,11 @@
             margin: 20px auto;
             position: relative;
             z-index: 2;
+            display: none;
+        }
+
+        #screen1 {
+            display: block;
         }
 
         .buttons-container {
@@ -44,6 +49,11 @@
             min-width: 120px;
         }
 
+        .btn-next {
+            background: #ff4d6d;
+            color: white;
+        }
+
         .btn-yes {
             background: #4CAF50;
             color: white;
@@ -60,7 +70,7 @@
             display: block;
         }
 
-        h2 {
+        h1, h2 {
             color: #e91e63;
             font-size: 32px;
             margin-bottom: 30px;
@@ -111,12 +121,25 @@
             -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,30 C27,30 10,45 10,65 C10,85 25,95 40,95 C50,95 50,90 50,90 C50,90 50,95 60,95 C75,95 90,85 90,65 C90,45 73,30 50,30 Z'/%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,30 C27,30 10,45 10,65 C10,85 25,95 40,95 C50,95 50,90 50,90 C50,90 50,95 60,95 C75,95 90,85 90,65 C90,45 73,30 50,30 Z'/%3E%3C/svg%3E");
         }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
     </style>
 </head>
 <body>
     <div id="hearts-container"></div>
 
     <div id="screen1" class="container">
+        <h1>Hello Christine 👋</h1>
+        <img src="./images/image 1.jpg" alt="Christine">
+        <p>Step forward, because this is all about <em>you</em> 💌</p>
+        <button class="btn btn-next" onclick="nextScreen(2)">Next</button>
+    </div>
+
+    <div id="screen2" class="container">
         <h2>Will you be my Valentine? ❤️</h2>
         <div class="buttons-container">
             <button id="yesBtn" class="btn btn-yes" onclick="handleYes()">Yes</button>
@@ -125,7 +148,7 @@
         <img src="Pic 1.img" alt="Valentine Picture" class="valentine-pic">
     </div>
 
-    <div id="screen2" class="container hidden">
+    <div id="screen3" class="container">
         <h2>Yayy! Thank you, my love! ❤️</h2>
         <p>You make my world brighter! I will love you till the day I die, and I can't imagine a single day without you. ❤️</p>
         <p>You are the most wonderful and amazing part of my life. I am so lucky to have you. Thank you for always being by my side. I love you beyond imagination—you are my everything. Let's stay together forever❤️</p>
@@ -183,8 +206,14 @@
 
         function handleYes() {
             createConfetti();
-            document.getElementById('screen1').classList.add('hidden');
-            document.getElementById('screen2').classList.remove('hidden');
+            nextScreen(3);
+        }
+
+        function nextScreen(num) {
+            document.querySelectorAll('.container').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById('screen' + num).style.display = 'block';
         }
     </script>
 </body>
