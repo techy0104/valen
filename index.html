@@ -25,6 +25,7 @@
             margin: 20px auto;
             position: relative;
             z-index: 2;
+            transition: transform 0.3s ease;
         }
 
         .floating-heart {
@@ -84,6 +85,38 @@
             line-height: 1.6;
             margin: 20px 0;
         }
+
+        .heart-collage {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 5px;
+            clip-path: path('M150,30 C60,30 0,100 0,190 C0,260 150,330 150,330 C150,330 300,260 300,190 C300,100 240,30 150,30 Z');
+        }
+
+        .heart-collage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            z-index: 3;
+            animation: confetti 3s ease-out forwards;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotateZ(0); opacity: 1; }
+            100% { transform: translateY(1000px) rotateZ(720deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -105,7 +138,7 @@
     </div>
 
     <div id="screen3" class="container hidden">
-        <h2>Yayy! Thank you, my love! 🎉</h2>
+        <h2>Yayy! Thank you, my love! ❤️</h2>
         <p>You make my world brighter! I will love you till the day I die, and I can't imagine a single day without you. ❤️</p>
         <p>You are the most wonderful and amazing part of my life. I am so lucky to have you. Thank you for always being by my side. I love you beyond imagination—you are my everything. Let's stay together forever❤️</p>
         <img src="./images/image 2.jpg" alt="Us Together">
@@ -113,9 +146,11 @@
     </div>
 
     <div id="screen4" class="container hidden">
-        <div class="heart-photos">
+        <div class="heart-collage">
+            <!-- Add your images here for the heart collage -->
             <img src="./images/image 3.jpg" alt="Us">
             <img src="./images/image 4.jpg" alt="Together">
+            <!-- Add more images as needed -->
         </div>
         <p class="poem">
             "In your eyes, I found my home,<br>
@@ -135,24 +170,42 @@
         const yesBtn = document.getElementById('yesBtn');
 
         function createHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.classList.add('floating-heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.getElementById('hearts-container').appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+            for(let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('floating-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.getElementById('hearts-container').appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
         }
 
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 60);
+
+        function createConfetti() {
+            for(let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = Math.random() * 100 + 'vh';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
 
         function handleNo() {
             noCount++;
             const currentSize = 100 + (noCount * 20);
+            const container = document.getElementById('screen2');
             yesBtn.style.transform = `scale(${1 + (noCount * 0.2)})`;
+            container.style.transform = `scale(${1 + (noCount * 0.1)})`;
         }
 
         function handleYes() {
+            createConfetti();
             nextScreen(3);
         }
 
