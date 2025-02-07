@@ -1,121 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Christine ❤️</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background-color: #ffe6f2;
-            color: #d63384;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
-            overflow-y: auto;
-            margin: 0;
-            padding: 15px;
-        }
-        .container {
-            display: none;
-            max-width: 350px;
-            padding: 15px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-            animation: fadeIn 1.5s ease-in-out;
-            margin: 10px auto;
-        }
-        button {
-            margin: 10px 5px;
-            padding: 8px 16px;
-            font-size: 14px;
-            border: none;
-            background: #ff4d6d;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-        button:hover {
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .emoji {
-            font-size: 50px;
-            margin: 10px 0;
-            animation: bounce 1.5s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        #screen1 { display: block; }
-        img {
-            max-width: 100%;
-            max-height: 300px;
-            width: auto;
-            height: auto;
-            border-radius: 10px;
-            margin: 10px 0;
-            object-fit: contain;
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-        p {
-            font-size: 0.95rem;
-            margin: 10px 0;
-        }
-    </style>
-</head>
-<body>
-    <div id="screen1" class="container">
-        <h2>Hello my love, my wifey, my Christine ❤️😊</h2>
-        <div class="emoji">🐻🎂💕</div>
-        <img src="./images/image 1.jpg" alt="Us Together">
-        <button onclick="nextScreen(2)">Next</button>
+import React, { useState, useEffect } from 'react';
+import { Heart } from 'lucide-react';
+
+const ValentinePage = () => {
+  const [step, setStep] = useState(0);
+  const [noCount, setNoCount] = useState(0);
+  const [yesPressed, setYesPressed] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  const getYesButtonSize = () => {
+    return 100 + (noCount * 20);
+  };
+
+  const handleNo = () => {
+    setNoCount(prev => prev + 1);
+  };
+
+  const handleYes = () => {
+    setYesPressed(true);
+    setShowConfetti(true);
+    setTimeout(() => {
+      setStep(2);
+    }, 2000);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center p-4">
+      {/* Floating hearts background */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <Heart
+            key={i}
+            className="absolute text-pink-200 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              fontSize: `${Math.random() * 20 + 10}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 3 + 2}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-md w-full bg-white rounded-xl shadow-2xl p-8 relative">
+        {step === 0 && (
+          <div className="text-center space-y-6">
+            <h1 className="text-4xl font-bold text-pink-600 animate-bounce">
+              Hello Christine 👋
+            </h1>
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden">
+              <img
+                src="./images/image1.jpg"
+                alt="Christine"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <p className="text-gray-700 italic">
+              Step forward, because this is all about <span className="font-bold">you</span> 💌
+            </p>
+            <button
+              onClick={() => setStep(1)}
+              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all"
+            >
+              Next
+            </button>
+          </div>
+        )}
+
+        {step === 1 && (
+          <div className="text-center space-y-6">
+            <h2 className="text-3xl font-bold text-pink-600 mb-8">
+              Will you be my Valentine? ❤️
+            </h2>
+            
+            {/* Animated teddy */}
+            <div className="w-32 h-32 mx-auto relative animate-bounce">
+              <div className="absolute inset-0 bg-amber-200 rounded-full" />
+              <div className="absolute w-8 h-8 bg-amber-300 rounded-full left-4 top-4" />
+              <div className="absolute w-8 h-8 bg-amber-300 rounded-full right-4 top-4" />
+              <div className="absolute w-6 h-4 bg-amber-900 rounded-full left-1/2 top-1/2 transform -translate-x-1/2" />
+            </div>
+
+            <div className="flex justify-center items-center gap-4 mt-8">
+              <button
+                onClick={handleYes}
+                style={{ fontSize: `${getYesButtonSize()}%` }}
+                className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all"
+              >
+                YES 💖
+              </button>
+              <button
+                onClick={handleNo}
+                className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all"
+              >
+                NO 💔
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 2 && (
+          <div className="text-center space-y-6">
+            {showConfetti && (
+              <div className="fixed inset-0 pointer-events-none">
+                {/* Add confetti animation here */}
+              </div>
+            )}
+            <h2 className="text-2xl font-bold text-pink-600">
+              Yayy! Thank you, my love! 🎉
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
+              You make my world brighter! I will love you till the day I die, and I can't imagine a single day without you. ❤️
+              You are the most wonderful and amazing part of my life. I am so lucky to have you. 
+              Thank you for always being by my side. I love you beyond imagination—you are my everything. 
+              Let's stay together forever❤️
+            </p>
+            <div className="relative w-full aspect-square rounded-lg overflow-hidden">
+              <img
+                src="./images/image2.jpg"
+                alt="Us Together"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <button
+              onClick={() => setStep(3)}
+              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-3 rounded-full transform hover:scale-105 transition-all"
+            >
+              Continue ❤️
+            </button>
+          </div>
+        )}
+
+        {step === 3 && (
+          <div className="text-center space-y-6">
+            <div className="heart-collage grid grid-cols-3 gap-2">
+              {[...Array(9)].map((_, i) => (
+                <div
+                  key={i}
+                  className={`aspect-square rounded-lg overflow-hidden ${
+                    [1, 3, 5, 7].includes(i) ? 'block' : 'hidden'
+                  }`}
+                >
+                  <img
+                    src={`./images/image${i + 3}.jpg`}
+                    alt={`Memory ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="text-gray-700 italic font-serif text-lg">
+              "In your eyes, I found my home,<br/>
+              In your smile, my heart's delight.<br/>
+              With every beat, my love grows more,<br/>
+              You're my star that glows at night.<br/><br/>
+              Forever yours, forever true,<br/>
+              Every day my love renews.<br/>
+              You're my dream come true, my dear,<br/>
+              My heart belongs to only you."
+            </p>
+            <h2 className="text-2xl font-bold text-pink-600">
+              I love you forever ❤️
+            </h2>
+          </div>
+        )}
+      </div>
     </div>
-    
-    <div id="screen2" class="container">
-        <p>You are the most wonderful and amazing part of my life. I am so lucky to have you. Thank you for always being by my side. I love you beyond imagination—you are my everything. Let's stay together forever. ❤️</p>
-        <div class="emoji">💖🎁🎀</div>
-        <img src="./images/image 2.jpg" alt="Sweet Memory">
-        <button onclick="nextScreen(3)">Next</button>
-    </div>
-    
-    <div id="screen3" class="container">
-        <p>Will you be my Valentine? 💖</p>
-        <div class="emoji">🌹💌💑</div>
-        <img src="./images/image 3.jpg" alt="Cute Moment">
-        <button onclick="nextScreen(4)">Yes 😊</button>
-        <button onclick="nextScreen(5)">Let me think 😏</button>
-    </div>
-    
-    <div id="screen4" class="container">
-        <p>Yayy! Thank you, my love! You make my world brighter! I will love you till the day I die, and I can't imagine a single day without you. ❤️</p>
-        <p>"You're the smile that starts my day, <br> The love that never fades away. <br> In your arms, I find my home, <br> Forever together, never alone. 💖"</p>
-        <div class="emoji">🎂🥰🎊</div>
-        <img src="./images/image 4.jpg" alt="Love Forever">
-    </div>
-    
-    <div id="screen5" class="container">
-        <p>You are stupid, idiot, and dumb most of the times, but still, I will say YES! 😆❤️</p>
-        <button onclick="nextScreen(4)">Yes 😊</button>
-    </div>
-    
-    <script>
-        function nextScreen(screenNum) {
-            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-            document.getElementById('screen' + screenNum).style.display = 'block';
-        }
-    </script>
-</body>
-</html>
+  );
+};
+
+export default ValentinePage;
