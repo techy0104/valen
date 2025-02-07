@@ -51,13 +51,14 @@
         }
 
         .btn {
-            padding: 10px 25px;
+            padding: 15px 30px;
             border: none;
             border-radius: 25px;
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 10px;
+            min-width: 120px;
         }
 
         .btn-yes {
@@ -80,25 +81,28 @@
             margin: 15px 0;
         }
 
-        .poem {
-            font-style: italic;
-            line-height: 1.6;
-            margin: 20px 0;
+        .cat-container {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
         }
 
-        .heart-collage {
-            position: relative;
+        .cat-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .heart-shape {
             width: 300px;
             height: 300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            gap: 5px;
-            clip-path: path('M150,30 C60,30 0,100 0,190 C0,260 150,330 150,330 C150,330 300,260 300,190 C300,100 240,30 150,30 Z');
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,30 C27,30 10,45 10,65 C10,85 25,95 40,95 C50,95 50,90 50,90 C50,90 50,95 60,95 C75,95 90,85 90,65 C90,45 73,30 50,30 Z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,30 C27,30 10,45 10,65 C10,85 25,95 40,95 C50,95 50,90 50,90 C50,90 50,95 60,95 C75,95 90,85 90,65 C90,45 73,30 50,30 Z'/%3E%3C/svg%3E");
         }
 
-        .heart-collage img {
+        .heart-shape img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -117,6 +121,15 @@
             0% { transform: translateY(0) rotateZ(0); opacity: 1; }
             100% { transform: translateY(1000px) rotateZ(720deg); opacity: 0; }
         }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cat {
+            animation: bounce 2s infinite;
+        }
     </style>
 </head>
 <body>
@@ -133,7 +146,10 @@
         <h2>Will you be my Valentine? ❤️</h2>
         <div class="buttons">
             <button id="yesBtn" class="btn btn-yes" onclick="handleYes()">YES 💖</button>
-            <button class="btn btn-no" onclick="handleNo()">NO 💔</button>
+            <button id="noBtn" class="btn btn-no" onclick="handleNo()">NO 💔</button>
+        </div>
+        <div class="cat-container">
+            <img src="cat.png" alt="Cute Cat" class="cat">
         </div>
     </div>
 
@@ -141,33 +157,22 @@
         <h2>Yayy! Thank you, my love! ❤️</h2>
         <p>You make my world brighter! I will love you till the day I die, and I can't imagine a single day without you. ❤️</p>
         <p>You are the most wonderful and amazing part of my life. I am so lucky to have you. Thank you for always being by my side. I love you beyond imagination—you are my everything. Let's stay together forever❤️</p>
-        <img src="./images/image 2.jpg" alt="Us Together">
-        <button class="btn btn-yes" onclick="nextScreen(4)">Continue ❤️</button>
-    </div>
-
-    <div id="screen4" class="container hidden">
-        <div class="heart-collage">
-            <!-- Add your images here for the heart collage -->
-            <img src="./images/image 3.jpg" alt="Us">
-            <img src="./images/image 4.jpg" alt="Together">
-            <!-- Add more images as needed -->
+        <div class="heart-shape">
+            <img src="./images/image 2.jpg" alt="Us Together">
         </div>
-        <p class="poem">
-            "In your eyes, I found my home,<br>
-            In your smile, my heart's delight.<br>
-            With every beat, my love grows more,<br>
-            You're my star that glows at night.<br><br>
-            Forever yours, forever true,<br>
-            Every day my love renews.<br>
-            You're my dream come true, my dear,<br>
-            My heart belongs to only you."
-        </p>
         <h3>I love you forever ❤️</h3>
     </div>
 
     <script>
         let noCount = 0;
         const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const messages = [
+            "Are you sure?🥲",
+            "I will be very sad😭",
+            "Please, give me chance😭",
+            "Pleaseeee😭"
+        ];
 
         function createHeart() {
             for(let i = 0; i < 5; i++) {
@@ -197,11 +202,12 @@
         }
 
         function handleNo() {
-            noCount++;
-            const currentSize = 100 + (noCount * 20);
-            const container = document.getElementById('screen2');
-            yesBtn.style.transform = `scale(${1 + (noCount * 0.2)})`;
-            container.style.transform = `scale(${1 + (noCount * 0.1)})`;
+            if (noCount < messages.length) {
+                noBtn.textContent = messages[noCount];
+                const currentSize = 100 + (noCount * 20);
+                yesBtn.style.transform = `scale(${1 + (noCount * 0.2)})`;
+                noCount++;
+            }
         }
 
         function handleYes() {
