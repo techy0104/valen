@@ -17,12 +17,12 @@
         }
 
         .container {
-            max-width: 600px;
-            padding: 30px;
+            max-width: 350px;
+            padding: 20px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            margin: 20px auto;
+            margin: 10px auto;
             position: relative;
             z-index: 2;
             display: none;
@@ -36,15 +36,15 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin: 20px 0;
+            margin: 15px 0;
             position: relative;
         }
 
         .btn {
-            padding: 15px 40px;
+            padding: 12px 30px;
             border: none;
             border-radius: 10px;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -57,7 +57,7 @@
         .btn-yes {
             background: #4CAF50;
             color: white;
-            min-width: 120px;
+            min-width: 100px;
             position: relative;
             z-index: 2;
         }
@@ -65,13 +65,13 @@
         .btn-no {
             background: #f44336;
             color: white;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         h1, h2 {
             color: #e91e63;
-            font-size: 32px;
-            margin-bottom: 30px;
+            font-size: 24px;
+            margin: 15px 0;
         }
 
         .floating-heart {
@@ -96,33 +96,25 @@
             }
         }
 
-        .heart-shape {
-            width: 280px;
-            height: 280px;
-            margin: 20px auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            clip-path: path('M50,30 C27,30 10,45 10,65 C10,85 25,95 40,95 C50,95 50,90 50,90 C50,90 50,95 60,95 C75,95 90,85 90,65 C90,45 73,30 50,30');
-        }
-
-        .heart-shape img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         img {
             max-width: 100%;
+            max-height: 200px;
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 10px 0;
+            object-fit: cover;
         }
 
         .poem {
             font-style: italic;
-            line-height: 1.8;
-            margin: 20px 0;
-            color: #666;
+            line-height: 1.6;
+            margin: 15px 0;
+            color: #d63384;
+            font-size: 16px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -142,7 +134,7 @@
             <button id="yesBtn" class="btn btn-yes" onclick="handleYes()">YES</button>
             <button id="noBtn" class="btn btn-no" onclick="handleNo()">NO</button>
         </div>
-        <img src="Pic 1.img" alt="Valentine Picture" style="max-width: 200px;">
+        <img src="Pic 1.img" alt="Valentine Picture" style="max-width: 180px;">
     </div>
 
     <div id="screen3" class="container">
@@ -154,18 +146,16 @@
     </div>
 
     <div id="screen4" class="container">
-        <div class="heart-shape">
-            <img src="./images/image 3.jpg" alt="Heart Image">
-        </div>
+        <img src="./images/image 3.jpg" alt="Final Image">
         <p class="poem">
-            "In your eyes, I found my home,<br>
-            In your smile, my heart's delight.<br>
-            With every beat, my love grows more,<br>
-            You're my star that glows at night.<br><br>
-            Forever yours, forever true,<br>
-            Every day my love renews.<br>
-            You're my dream come true, my dear,<br>
-            My heart belongs to only you."
+            "My darling, my sunshine ☀️<br>
+            Your love makes my heart dance 💃<br>
+            Every moment with you is pure magic ✨<br>
+            Like stars in a romantic trance 🌟<br><br>
+            Your smile lights up my world 🌍<br>
+            Your touch makes my heart flutter 💖<br>
+            You're my soulmate, my everything 👩‍❤️‍👨<br>
+            My love for you will last forever 🔒"
         </p>
         <h3>I love you forever ❤️</h3>
     </div>
