@@ -17,10 +17,10 @@
         }
 
         .container {
-            max-width: 400px;
-            padding: 25px;
+            max-width: 500px;
+            padding: 30px;
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             margin: 15px auto;
             position: relative;
@@ -35,16 +35,16 @@
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 15px 0;
+            gap: 25px;
+            margin: 20px 0;
             position: relative;
         }
 
         .btn {
-            padding: 15px 35px;
+            padding: 18px 40px;
             border: none;
-            border-radius: 10px;
-            font-size: 22px;
+            border-radius: 12px;
+            font-size: 26px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -57,7 +57,7 @@
         .btn-yes {
             background: #4CAF50;
             color: white;
-            min-width: 110px;
+            min-width: 130px;
             position: relative;
             z-index: 2;
         }
@@ -65,18 +65,18 @@
         .btn-no {
             background: #f44336;
             color: white;
-            min-width: 110px;
+            min-width: 130px;
         }
 
         h1, h2 {
             color: #e91e63;
-            font-size: 28px;
-            margin: 15px 0;
+            font-size: 34px;
+            margin: 20px 0;
         }
 
         .floating-heart {
             position: fixed;
-            font-size: 20px;
+            font-size: 24px;
             color: rgba(255, 105, 180, 0.3);
             z-index: 1;
             animation: floatUp linear infinite;
@@ -98,23 +98,29 @@
 
         img {
             max-width: 100%;
-            max-height: 250px;
-            border-radius: 10px;
-            margin: 10px 0;
+            max-height: 300px;
+            border-radius: 15px;
+            margin: 15px 0;
             object-fit: cover;
         }
 
         .poem {
             font-style: italic;
-            line-height: 1.6;
-            margin: 15px 0;
+            line-height: 1.8;
+            margin: 20px 0;
             color: #d63384;
-            font-size: 18px;
+            font-size: 22px;
         }
 
         p {
-            margin: 12px 0;
-            font-size: 16px;
+            margin: 15px 0;
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 28px;
+            color: #e91e63;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -134,7 +140,7 @@
             <button id="yesBtn" class="btn btn-yes" onclick="handleYes()">YES</button>
             <button id="noBtn" class="btn btn-no" onclick="handleNo()">NO</button>
         </div>
-        <img src="Pic 1.img" alt="Valentine Picture" style="max-width: 200px;">
+        <img src="Pic 1.img" alt="Valentine Picture" style="max-width: 250px;">
     </div>
 
     <div id="screen3" class="container">
